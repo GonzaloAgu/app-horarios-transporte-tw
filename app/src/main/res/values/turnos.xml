@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="l1t1">
+        <item name="parada_partida">4</item>
+        <item name="hora_partida">05:30</item>
+        <item name="ultima_parada">0</item>
+        <item name="hora_ultima_parada">22:28</item>
+    </string-array>
+    <string-array name="l1t2">
+        <item name="parada_partida">4</item>
+        <item name="hora_partida">05:50</item>
+        <item name="ultima_parada">0</item>
+        <item name="hora_ultima_parada">22:48</item>
+    </string-array>
+    <string-array name="l1t3">
+        <item name="parada_partida">2</item>
+        <item name="hora_partida">05:25</item>
+        <item name="ultima_parada">0</item>
+        <item name="hora_ultima_parada">21:48</item>
+    </string-array>
+    <string-array name="l1t4">
+        <item name="parada_partida">2</item>
+        <item name="hora_partida">05:45</item>
+        <item name="ultima_parada">0</item>
+        <item name="hora_ultima_parada">22:08</item>
+    </string-array>
+    <string-array name="l2t1">
+        <item name="parada_partida">5</item>
+        <item name="hora_partida">05:30</item>
+        <item name="ultima_parada">15</item>
+        <item name="hora_ultima_parada">22:33</item>
+    </string-array>
+    <string-array name="l2t2">
+        <item name="parada_partida">5</item>
+        <item name="hora_partida">05:53</item>
+        <item name="ultima_parada">15</item>
+        <item name="hora_ultima_parada">22:34</item>
+    </string-array>
+    <string-array name="l2t3">
+        <item name="parada_partida">0</item>
+        <item name="hora_partida">05:41</item>
+        <item name="ultima_parada">15</item>
+        <item name="hora_ultima_parada">22:57</item>
+    </string-array>
+    <string-array name="l2t4">
+        <item name="parada_partida">0</item>
+        <item name="hora_partida">06:04</item>
+        <item name="ultima_parada">15</item>
+        <item name="hora_ultima_parada">23:08</item>
+    </string-array>
+    <string-array name="l3t1">
+        <item name="parada_partida">8</item>
+        <item name="hora_partida">05:30</item>
+        <item name="ultima_parada">0</item>
+        <item name="hora_ultima_parada">24:01</item>
+    </string-array>
+    <string-array name="l3t2">
+        <item name="parada_partida">0</item>
+        <item name="hora_partida">05:41</item>
+        <item name="ultima_parada">0</item>
+        <item name="hora_ultima_parada">23:11</item>
+    </string-array>
+    <string-array name="l3t3">
+        <item name="parada_partida">0</item>
+        <item name="hora_partida">06:06</item>
+        <item name="ultima_parada">0</item>
+        <item name="hora_ultima_parada">23:36</item>
+    </string-array>
+    <string-array name="l4t1">
+        <item name="parada_partida">11</item>
+        <item name="hora_partida">05:30</item>
+        <item name="ultima_parada">0</item>
+        <item name="hora_ultima_parada">22:52</item>
+    </string-array>
+    <string-array name="l4t2">
+        <item name="parada_partida">11</item>
+        <item name="hora_partida">05:55</item>
+        <item name="ultima_parada">0</item>
+        <item name="hora_ultima_parada">23:17</item>
+    </string-array>
+    <string-array name="l4t3">
+        <item name="parada_partida">6</item>
+        <item name="hora_partida">05:52</item>
+        <item name="ultima_parada">0</item>
+        <item name="hora_ultima_parada">22:27</item>
+    </string-array>
+</resources>

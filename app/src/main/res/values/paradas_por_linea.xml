@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Offset: Tiempo en minutos que se tarda desde la parada anterior-->
+<resources>
+    <array name="paradas_linea1">
+        <item>0</item>
+        <item>4</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </array>
+    <array name="offset_linea1">
+        <item>8</item>
+        <item>22</item>
+        <item>17</item>
+        <item>18</item>
+        <item>15</item>
+    </array>
+    <array name="paradas_linea2">
+        <item>0</item>
+        <item>7</item>
+        <item>15</item>
+        <item>5</item>
+        <item>6</item>
+        <item>1</item>
+        <item>2</item>
+    </array>
+    <array name="offset_linea2">
+        <item>15</item>
+        <item>9</item>
+        <item>15</item>
+        <item>11</item>
+        <item>17</item>
+        <item>12</item>
+        <item>13</item>
+    </array>
+    <array name="paradas_linea3">
+        <item>0</item>
+        <item>8</item>
+        <item>9</item>
+        <item>14</item>
+        <item>10</item>
+        <item>1</item>
+    </array>
+    <array name="offset_linea3">
+        <item>7</item>
+        <item>14</item>
+        <item>8</item>
+        <item>6</item>
+        <item>23</item>
+        <item>17</item>
+    </array>
+    <array name="paradas_linea4">
+        <item>0</item>
+        <item>11</item>
+        <item>12</item>
+        <item>14</item>
+        <item>13</item>
+        <item>6</item>
+        <item>1</item>
+    </array>
+    <array name="offset_linea4">
+        <item>6</item>
+        <item>8</item>
+        <item>11</item>
+        <item>11</item>
+        <item>10</item>
+        <item>15</item>
+        <item>14</item>
+    </array>
+</resources>

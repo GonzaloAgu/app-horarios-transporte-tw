@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#040D12"
+    android:paddingHorizontal="20dp"
+    style="@style/Theme.Material3.Dark"
+    tools:context=".HorariosActivity">
+
+    <TextView
+        android:id="@+id/mensajeInicial"
+        android:layout_width="322dp"
+        android:layout_height="101dp"
+        android:layout_marginTop="108dp"
+        android:text="Selecciona una línea de colectivos y la zona donde vas a esperarlo."
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerZonas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.043" />
+
+    <TextView
+        android:id="@+id/proximaLlegada"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginTop="-60dp"
+        android:ems="10"
+        android:inputType="time"
+        android:text="13:20"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="100sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mensajeInicial" />
+
+    <Spinner
+        android:id="@+id/spinnerLineas"
+        style="@style/Widget.AppCompat.Spinner"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerZonas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Spinner
+        android:id="@+id/spinnerZonas"
+        style="@style/Widget.AppCompat.Spinner"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/botonConsultar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/botonConsultar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/botones"
+        android:clickable="true"
+        android:layout_marginBottom="60dp"
+        android:maxLines="1"
+        android:minHeight="70dp"
+        android:text="CONSULTAR HORARIO"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="318dp"
+        android:layout_height="166dp"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerLineas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/proximaLlegada" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

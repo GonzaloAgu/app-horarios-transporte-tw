@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">coles</string>
+    <string name="micoletw">MiColeTW</string>
+    <string-array name="lineas_array">
+        <item>Seleccionar una línea</item>
+        <item>Linea 1</item>
+        <item>Linea 2</item>
+        <item>Linea 3</item>
+        <item>Linea 4</item>
+    </string-array>
+    <string-array name="paradas_array">
+        <item>Terminal</item>
+        <item>9 de julio (hacia Belgrano)</item>
+        <item>UPCN</item>
+        <item>Codepro</item>
+        <item>Amaya</item>
+        <item>INTA</item>
+        <item>1000 Viv. (hacia Centro)</item>
+        <item>AP Bell</item>
+        <item>Luz y fuerza</item>
+        <item>Pellegrini Norte</item>
+        <item>Etchepare</item>
+        <item>Planta de gas</item>
+        <item>295 Viv.</item>
+        <item>Uruguay</item>
+        <item>9 de julio (desde Belgrano)</item>
+        <item>1000 Viv. (desde Centro)</item>
+    </string-array>
+
+</resources>

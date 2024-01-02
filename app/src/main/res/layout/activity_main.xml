@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#040D12"
+    android:padding="20dp"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/tituloPrincipal"
+        android:layout_width="match_parent"
+        android:layout_height="101dp"
+        android:autoSizeMinTextSize="40sp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/andika"
+        android:maxLines="1"
+        android:text="@string/micoletw"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/botonHorarios"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.164" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/botonHorarios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:backgroundTint="@color/boton"
+        android:background="@drawable/botones"
+        android:layout_marginBottom="10dp"
+        android:minHeight="70dp"
+        android:maxLines="1"
+        android:layout_below="@+id/tituloPrincipal"
+        android:clickable="true"
+        android:text="HORARIOS"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/botonRecorridos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/botonRecorridos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:minHeight="70dp"
+        android:background="@drawable/botones"
+        android:layout_marginBottom="60dp"
+        android:maxLines="1"
+        android:layout_below="@+id/botonHorarios"
+        android:text="RECORRIDOS"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
