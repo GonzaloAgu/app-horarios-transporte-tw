@@ -6,7 +6,6 @@ import java.util.TimeZone;
 
 public class Linea {
     private byte nroLinea;
-    private String nombre;
     private int[] paradas;
     private int[] offsets;
 
@@ -14,7 +13,6 @@ public class Linea {
 
     public Linea(String nombre, int nroLinea){
         this.nroLinea = (byte) nroLinea;
-        this.nombre = nombre;
     }
 
     /**
@@ -70,20 +68,17 @@ public class Linea {
         int horaActual = calendar.get(Calendar.HOUR_OF_DAY);
         int minutosActual = calendar.get(Calendar.MINUTE);
 
+        ProximasLlegadasLista listaRecycler = ProximasLlegadasLista.getInstance();
+        listaRecycler.limpiarLista();
 
         if(horaActual == 0)
             horaActual = 24; // para simplificar comparaciones entre horas
 
-        // si ya es de madrugada, se cambia la "hora actual" para que siempre muestre salidas de las 5:30AM en adelante
-        if((horaActual == 24 && minutosActual > 1) || (horaActual >= 1 && horaActual < 5)){
-            horaActual = 5;
-            minutosActual = 0;
-        }
-
         // buscar el turno de la línea más proximo a la parada
         int[] llegadaLinea = null;
         for (Turno turno : turnos) {
-            int[] llegadaTurno = turno.obtenerHoraProximoArribo(idParada, horaActual, minutosActual, paradas, offsets);
+            // TODO: Refactorizar utilizando la clase Hora
+            int[] llegadaTurno = turno.obtenerProximoArriboAParada(idParada, horaActual, minutosActual, paradas, offsets);
             if(llegadaLinea == null)
                 llegadaLinea = llegadaTurno;
             else if(llegadaTurno[0] < llegadaLinea[0])
@@ -92,10 +87,12 @@ public class Linea {
                 llegadaLinea = llegadaTurno;
         }
 
-        // de persistir una hora = 24, se devuelve al 0
-        if(horaActual == 24)
-            horaActual = 0;
+        listaRecycler.ordenarLista();
 
-        return String.format("%d:%02d", llegadaLinea[0], llegadaLinea[1]);
+        if(llegadaLinea[0] == 24)
+            llegadaLinea[0] = 0;
+
+        return String.format("%d:%02d",
+                llegadaLinea[0], llegadaLinea[1]);
     }
 }

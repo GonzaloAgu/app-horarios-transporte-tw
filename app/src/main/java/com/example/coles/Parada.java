@@ -33,8 +33,6 @@ public class Parada implements Comparable<Parada>{
 
     }
 
-
-
     public int getIdParada() {
         return idParada;
     }
@@ -59,7 +57,7 @@ public class Parada implements Comparable<Parada>{
 
         if(this.hora < p.getHora())
             return true;
-        else if(this.hora == p.getHora() && this.minuto < p.getMinuto())
+        else if(this.hora == p.getHora() && this.minuto <= p.getMinuto())
             return true;
         else
             return false;

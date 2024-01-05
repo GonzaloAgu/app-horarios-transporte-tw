@@ -24,7 +24,6 @@ public class Carga {
                     l1.agregarTurno(res.getStringArray(R.array.l1t3));
                     l1.agregarTurno(res.getStringArray(R.array.l1t4));
                     l1.setOffsets(res.getIntArray(R.array.offset_linea1));
-                    listaLineas.set(0, l1);
                 }
                 break;
             case 2:
@@ -35,7 +34,6 @@ public class Carga {
                     l2.agregarTurno(res.getStringArray(R.array.l2t3));
                     l2.agregarTurno(res.getStringArray(R.array.l2t4));
                     l2.setOffsets(res.getIntArray(R.array.offset_linea2));
-                    listaLineas.set(1, l2);
                 }
                 break;
             case 3:
@@ -45,7 +43,6 @@ public class Carga {
                     l3.agregarTurno(res.getStringArray(R.array.l3t2));
                     l3.agregarTurno(res.getStringArray(R.array.l3t3));
                     l3.setOffsets(res.getIntArray(R.array.offset_linea3));
-                    listaLineas.set(2, l3);
                 }
                 break;
             case 4:
@@ -55,7 +52,6 @@ public class Carga {
                     l4.agregarTurno(res.getStringArray(R.array.l4t2));
                     l4.agregarTurno(res.getStringArray(R.array.l4t3));
                     l4.setOffsets(res.getIntArray(R.array.offset_linea4));
-                    listaLineas.set(3, l4);
                 }
                 break;
         }

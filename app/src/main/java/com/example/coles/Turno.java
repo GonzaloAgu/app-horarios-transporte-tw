@@ -19,12 +19,20 @@ public class Turno {
         return paradaFinal;
     }
 
-
-    public int[] obtenerHoraProximoArribo(int idParada, int horaActual, int minutosActual, int[] ordenParadas, int[] offsets) {
+    /**
+     *
+     * @param idParada
+     * @param horaActual Formato 24hs
+     * @param minutosActual
+     * @param ordenParadas arreglo que enumera IDs de las paradas que abarca la línea
+     * @param offsets referido al arreglo anterior; arreglo que enumera los minutos que se demora en llegar a cada parada.
+     * @return [ hora de llegada, minuto de llegada]
+     */
+    public int[] obtenerProximoArriboAParada(int idParada, int horaActual, int minutosActual, int[] ordenParadas, int[] offsets) {
 
         // se crean dos "paradas teóricas", una siendo la parada de partida de la unidad y otra la del usuario
         Parada aux = new Parada(-1, paradaInicial.getHora(), paradaInicial.getMinuto());
-        Parada objetivo = new Parada(-1, horaActual, minutosActual);
+        Parada objetivo = new Parada(-1, horaActual, minutosActual-3);
 
         // hallar posición en ordenParadas de la parada inicial y la parada del usuario, guardarla en j
         int j = Carga.posicionEnArreglo(ordenParadas, paradaInicial.getIdParada());
@@ -45,15 +53,33 @@ public class Turno {
             minutosEntrePasadas += offsets[k];
         }
 
+        ProximasLlegadasLista listaLlegadas = ProximasLlegadasLista.getInstance();
+
         // se suman vueltas hasta llegar a un horario posterior a la hora actual y está dentro de horario
         while(aux.esAnteriorA(objetivo) && aux.esAnteriorA(paradaFinal)){
+            listaLlegadas.agregarLlegada(new Hora(aux.getHora(), aux.getMinuto()));
+            listaLlegadas.sumarAPosActual(1);
             aux.sumarMinutos(minutosEntrePasadas);
         }
 
+        // en caso de parada en la hora 24, se debe mostrar 0
         if(aux.getHora() == 24)
             aux.setHora(0);
 
-        return new int[] {aux.getHora(), aux.getMinuto()};
+        // guardo respuesta a retornar
+        int[] proximaLlegada = {aux.getHora(), aux.getMinuto()};
+
+        // si ninguna parada cumplió el requisito, se devuelve la primer parada del día
+        if(paradaFinal.esAnteriorA(aux))
+            proximaLlegada = this.obtenerProximoArriboAParada(idParada, 5, 0, ordenParadas, offsets);
+
+        // lleno el recyclerview con los horarios completos
+        while(aux.esAnteriorA(paradaFinal) && aux.getHora() >= 5){
+            listaLlegadas.agregarLlegada(new Hora(aux.getHora(), aux.getMinuto()));
+            aux.sumarMinutos(minutosEntrePasadas);
+        }
+
+        return proximaLlegada;
 
     }
 

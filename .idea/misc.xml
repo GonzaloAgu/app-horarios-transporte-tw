@@ -5,9 +5,11 @@
       <map>
         <entry key="..\:/Documentos/Proyectos/coles/app/src/main/res/drawable/botones.xml" value="0.1865" />
         <entry key="..\:/Documentos/Proyectos/coles/app/src/main/res/drawable/custom_button_background.xml" value="0.1865" />
+        <entry key="..\:/Documentos/Proyectos/coles/app/src/main/res/drawable/ic_baseline_directions_bus_24.xml" value="0.132" />
         <entry key="..\:/Documentos/Proyectos/coles/app/src/main/res/layout/activity_horarios.xml" value="0.25" />
         <entry key="..\:/Documentos/Proyectos/coles/app/src/main/res/layout/activity_horarios_display.xml" value="0.209375" />
         <entry key="..\:/Documentos/Proyectos/coles/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Documentos/Proyectos/coles/app/src/main/res/layout/fila_parada_rv.xml" value="0.33" />
       </map>
     </option>
   </component>

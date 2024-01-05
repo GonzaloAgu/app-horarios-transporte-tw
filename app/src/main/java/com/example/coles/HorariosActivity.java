@@ -1,6 +1,8 @@
 package com.example.coles;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -13,13 +15,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class HorariosActivity extends AppCompatActivity implements View.OnClickListener {
     private String[] listaParadas;
     private ArrayList<Linea> listaLineas = new ArrayList<>();
     private Linea lineaSeleccionada;
     private int idParadaSeleccionada;
+
     private TextView mensajeInicial;
+    private TextView proximaLlegada;
+    private RecyclerView otrasLlegadas;
+    private TextView botonConsultar;
 
     private Spinner spinnerLineas;
     private Spinner spinnerZonas;
@@ -27,14 +34,13 @@ public class HorariosActivity extends AppCompatActivity implements View.OnClickL
     private ArrayAdapter<CharSequence> adapterLineas;
     private ArrayAdapter<CharSequence> adapterZonas;
 
-    private TextView botonConsultar;
-    private TextView proximaLlegada;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_horarios);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         Resources res = getResources();
 
         configurarVistas();
@@ -52,28 +58,21 @@ public class HorariosActivity extends AppCompatActivity implements View.OnClickL
             Carga.cargarTurnos(getResources(), lineaSeleccionada, listaLineas);
             try {
                 proximaLlegada.setText(lineaSeleccionada.obtenerProximaHoraLlegada(idParadaSeleccionada));
+                otrasLlegadas = findViewById(R.id.otrasLlegadas);
+
+                LlegadaRecyclerViewAdapter RVadapter = new LlegadaRecyclerViewAdapter(this, ProximasLlegadasLista.getInstance().getLlegadas());
+
+                otrasLlegadas.setAdapter(RVadapter);
+                otrasLlegadas.setLayoutManager(new LinearLayoutManager(this));
+                otrasLlegadas.getLayoutManager().scrollToPosition(ProximasLlegadasLista.getInstance().getPosActual() + 1);
+
+
             } catch(FueraDeHorarioException e) {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT);
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
 
             proximaLlegada.setVisibility(View.VISIBLE);
         }
-    }
-
-    private void actualizarParadas(){
-        adapterZonas.clear();
-        for(int p : lineaSeleccionada.getParadas()){
-            adapterZonas.add(listaParadas[p]);
-        }
-        spinnerZonas.setAdapter(adapterZonas);
-    }
-
-    private void setDisponibilidad(View view, boolean bool) {
-        view.setEnabled(bool);
-        if(bool)
-            view.setAlpha((float)1);
-        else
-            view.setAlpha((float)0.2);
     }
 
     private void configurarSpinners(){
@@ -138,15 +137,31 @@ public class HorariosActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
+    private void actualizarParadas(){
+        adapterZonas.clear();
+        for(int p : lineaSeleccionada.getParadas()){
+            adapterZonas.add(listaParadas[p]);
+        }
+        spinnerZonas.setAdapter(adapterZonas);
+    }
+
+    private void setDisponibilidad(View view, boolean esVisible) {
+        view.setEnabled(esVisible);
+        if(esVisible)
+            view.setAlpha((float)1);
+        else
+            view.setAlpha((float)0.2);
+    }
+
     private void configurarVistas(){
         mensajeInicial = findViewById(R.id.mensajeInicial);
         botonConsultar = findViewById(R.id.botonConsultar);
         proximaLlegada = findViewById(R.id.proximaLlegada);
+        otrasLlegadas = findViewById(R.id.otrasLlegadas);
 
         botonConsultar.setOnClickListener(this::onClick);
         // desactiva botón de consulta
         setDisponibilidad(botonConsultar, false);
     }
-
 
 }
