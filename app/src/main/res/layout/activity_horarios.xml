@@ -11,29 +11,31 @@
     <TextView
         android:id="@+id/mensajeInicial"
         android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:minHeight="20dp"
         android:paddingHorizontal="20dp"
-        android:layout_height="101dp"
         android:text="Selecciona una línea de colectivos y la zona donde vas a esperarlo."
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="24dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08" />
+        app:layout_constraintVertical_bias="0.038" />
 
     <TextView
         android:id="@+id/proximaLlegada"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:layout_marginTop="-65dp"
-        android:ems="10"
+        android:layout_height="wrap_content"
+        android:maxHeight="110dp"
         android:inputType="time"
         android:text="13:20"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="75sp"
+        android:textSize="60sp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,52 +45,51 @@
         android:id="@+id/spinnerLineas"
         style="@style/Widget.AppCompat.Spinner"
         android:layout_width="match_parent"
+        android:layout_height="45dp"
         android:paddingHorizontal="20dp"
-        android:layout_height="50dp"
         app:layout_constraintBottom_toTopOf="@+id/spinnerZonas"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerZonas"
         style="@style/Widget.AppCompat.Spinner"
         android:layout_width="match_parent"
-
+        android:layout_height="45dp"
+        android:layout_marginBottom="30dp"
         android:paddingHorizontal="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_height="50dp"
         app:layout_constraintBottom_toTopOf="@+id/botonConsultar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/botonConsultar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="20dp"
         android:background="@drawable/botones"
         android:clickable="true"
         android:maxLines="1"
-        android:minHeight="70dp"
         android:text="CONSULTAR HORARIO"
         android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHeight_percent="0.08"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/otrasLlegadas"
         android:layout_width="match_parent"
-        android:layout_height="0pt"
+        android:layout_height="230dp"
         app:layout_constraintBottom_toTopOf="@+id/spinnerLineas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/proximaLlegada"
-        app:layout_constraintVertical_bias="0.2"
-        app:layout_constraintHeight_percent="0.4"/>
-
+        app:layout_constraintVertical_bias="0.2"/>
+/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

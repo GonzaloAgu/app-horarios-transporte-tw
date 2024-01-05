@@ -16,6 +16,7 @@ public class LlegadaRecyclerViewAdapter extends RecyclerView.Adapter<LlegadaRecy
 
     Context context;
     ArrayList<Hora> horas;
+    int iconoBus = ProximasLlegadasLista.getInstance().getIconoBus();
 
     public LlegadaRecyclerViewAdapter(Context context, ArrayList<Hora> horas){
         this.context = context;
@@ -25,7 +26,6 @@ public class LlegadaRecyclerViewAdapter extends RecyclerView.Adapter<LlegadaRecy
     @NonNull
     @Override
     public LlegadaRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.fila_parada_rv, parent, false);
         return new LlegadaRecyclerViewAdapter.MyViewHolder(view);
@@ -34,7 +34,7 @@ public class LlegadaRecyclerViewAdapter extends RecyclerView.Adapter<LlegadaRecy
     @Override
     public void onBindViewHolder(@NonNull LlegadaRecyclerViewAdapter.MyViewHolder holder, int position) {
         holder.horaView.setText(horas.get(position).getHoraCompleta());
-        holder.imageView.setImageResource(ProximasLlegadasLista.getInstance().getIconoBus());
+        holder.imageView.setImageResource(iconoBus);
     }
 
     @Override

@@ -54,18 +54,20 @@ public class HorariosActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         Animacion.clickBoton(view);
         if(view.getId() == R.id.botonConsultar) {
-            mensajeInicial.setText("Próxima llegada...");
+            mensajeInicial.setText("\nPróxima llegada...");
             Carga.cargarTurnos(getResources(), lineaSeleccionada, listaLineas);
             try {
                 proximaLlegada.setText(lineaSeleccionada.obtenerProximaHoraLlegada(idParadaSeleccionada));
+
                 otrasLlegadas = findViewById(R.id.otrasLlegadas);
 
                 LlegadaRecyclerViewAdapter RVadapter = new LlegadaRecyclerViewAdapter(this, ProximasLlegadasLista.getInstance().getLlegadas());
-
                 otrasLlegadas.setAdapter(RVadapter);
-                otrasLlegadas.setLayoutManager(new LinearLayoutManager(this));
-                otrasLlegadas.getLayoutManager().scrollToPosition(ProximasLlegadasLista.getInstance().getPosActual() + 1);
 
+                otrasLlegadas.setLayoutManager(new LinearLayoutManager(this));
+                int pos = ProximasLlegadasLista.getInstance().getPosActual();
+                //otrasLlegadas.getLayoutManager().scrollToPosition(pos+1);
+                otrasLlegadas.scrollToPosition(pos+1);
 
             } catch(FueraDeHorarioException e) {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -98,6 +100,9 @@ public class HorariosActivity extends AppCompatActivity implements View.OnClickL
         // Aplica adaptadores a Spinners
         spinnerLineas.setAdapter(adapterLineas);
         spinnerZonas.setAdapter(adapterZonas);
+
+        spinnerLineas.bringToFront();
+        spinnerZonas.bringToFront();
 
         spinnerLineas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

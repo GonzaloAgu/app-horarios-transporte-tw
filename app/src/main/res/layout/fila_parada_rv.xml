@@ -15,15 +15,13 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/fondo"
-            tools:layout_editor_absoluteX="48dp"
-            tools:layout_editor_absoluteY="496dp">
+            android:layout_height="50dp"
+            android:background="@color/fondo">
 
             <ImageView
                 android:id="@+id/busIcono"
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.343"
@@ -36,7 +34,7 @@
             <TextView
                 android:id="@+id/hora"
                 android:layout_width="105dp"
-                android:layout_height="48dp"
+                android:layout_height="match_parent"
                 android:text="20:43"
                 android:textAlignment="center"
                 android:textColor="@color/white"
