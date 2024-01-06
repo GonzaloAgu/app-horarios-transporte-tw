@@ -11,7 +11,7 @@ public class FueraDeHorarioException extends Exception {
     }
 
     public FueraDeHorarioException(){
-        message = "El servicio de colectivos no está activo a esta hora.";
+        message = "Fuera de horario";
     }
 
     public Parada getUltimaParada() {

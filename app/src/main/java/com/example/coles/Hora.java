@@ -13,6 +13,10 @@ public class Hora implements Comparable<Hora>{
         return hora;
     }
 
+    public void setHora(int hora) {
+        this.hora = hora;
+    }
+
     public int getMinuto() {
         return minuto;
     }

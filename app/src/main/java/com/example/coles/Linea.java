@@ -63,7 +63,8 @@ public class Linea {
      * @return String con formato 24hs "HH:MM"
      * @throws FueraDeHorarioException
      */
-    public String obtenerProximaHoraLlegada(int idParada) throws FueraDeHorarioException {
+    public String
+    obtenerProximaHoraLlegada(int idParada) throws FueraDeHorarioException {
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT-3:00"));
         int horaActual = calendar.get(Calendar.HOUR_OF_DAY);
         int minutosActual = calendar.get(Calendar.MINUTE);
@@ -79,15 +80,21 @@ public class Linea {
         for (Turno turno : turnos) {
             // TODO: Refactorizar utilizando la clase Hora
             int[] llegadaTurno = turno.obtenerProximoArriboAParada(idParada, horaActual, minutosActual, paradas, offsets);
-            if(llegadaLinea == null)
-                llegadaLinea = llegadaTurno;
-            else if(llegadaTurno[0] < llegadaLinea[0])
-                llegadaLinea = llegadaTurno;
-            else if(llegadaTurno[0] == llegadaLinea[0] && llegadaTurno[1] < llegadaLinea[1])
-                llegadaLinea = llegadaTurno;
+            if(llegadaTurno != null){
+                if(llegadaLinea == null)
+                    llegadaLinea = llegadaTurno;
+                else if(llegadaTurno[0] < llegadaLinea[0])
+                    llegadaLinea = llegadaTurno;
+                else if(llegadaTurno[0] == llegadaLinea[0] && llegadaTurno[1] < llegadaLinea[1])
+                    llegadaLinea = llegadaTurno;
+            }
+
         }
 
         listaRecycler.ordenarLista();
+
+        if(llegadaLinea == null)
+            throw new FueraDeHorarioException();
 
         if(llegadaLinea[0] == 24)
             llegadaLinea[0] = 0;

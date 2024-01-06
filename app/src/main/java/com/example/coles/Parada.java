@@ -65,8 +65,9 @@ public class Parada implements Comparable<Parada>{
 
     /**
      * @param
+     * @return
      */
-    public void sumarMinutos(int minutos){
+    public Parada sumarMinutos(int minutos){
         if(minutos > 59){
             this.hora += minutos / 60;
             this.minuto += minutos % 60;
@@ -80,5 +81,15 @@ public class Parada implements Comparable<Parada>{
 
         if(this.hora == 25)
             this.hora = 1;
+        return this;
+    }
+    @Override
+    public boolean equals(Object obj){
+        if(obj instanceof Parada){
+            Parada p = (Parada)obj;
+            return p.getHora() == this.hora && p.getMinuto() == this.minuto;
+        } else {
+            return false;
+        }
     }
 }

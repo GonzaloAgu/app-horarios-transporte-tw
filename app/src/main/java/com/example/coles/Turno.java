@@ -32,7 +32,7 @@ public class Turno {
 
         // se crean dos "paradas teóricas", una siendo la parada de partida de la unidad y otra la del usuario
         Parada aux = new Parada(-1, paradaInicial.getHora(), paradaInicial.getMinuto());
-        Parada objetivo = new Parada(-1, horaActual, minutosActual-3);
+        Parada objetivo = new Parada(-1, horaActual, minutosActual);
 
         // hallar posición en ordenParadas de la parada inicial y la parada del usuario, guardarla en j
         int j = Carga.posicionEnArreglo(ordenParadas, paradaInicial.getIdParada());
@@ -62,16 +62,13 @@ public class Turno {
             aux.sumarMinutos(minutosEntrePasadas);
         }
 
-        // en caso de parada en la hora 24, se debe mostrar 0
-        if(aux.getHora() == 24)
-            aux.setHora(0);
-
         // guardo respuesta a retornar
         int[] proximaLlegada = {aux.getHora(), aux.getMinuto()};
 
         // si ninguna parada cumplió el requisito, se devuelve la primer parada del día
-        if(paradaFinal.esAnteriorA(aux))
-            proximaLlegada = this.obtenerProximoArriboAParada(idParada, 5, 0, ordenParadas, offsets);
+        if(paradaFinal.esAnteriorA(aux) && !paradaFinal.equals(aux))
+            //proximaLlegada = this.obtenerProximoArriboAParada(idParada, 5, 0, ordenParadas, offsets);
+            return null;
 
         // lleno el recyclerview con los horarios completos
         while(aux.esAnteriorA(paradaFinal) && aux.getHora() >= 5){
