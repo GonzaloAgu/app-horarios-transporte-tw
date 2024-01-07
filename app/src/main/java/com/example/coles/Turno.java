@@ -57,8 +57,13 @@ public class Turno {
 
         // se suman vueltas hasta llegar a un horario posterior a la hora actual y está dentro de horario
         while(aux.esAnteriorA(objetivo) && aux.esAnteriorA(paradaFinal)){
+
+            // caso excepcional línea 3
+            if(aux.getHora() == 24)
+                break;
+
             listaLlegadas.agregarLlegada(new Hora(aux.getHora(), aux.getMinuto()));
-            listaLlegadas.sumarAPosActual(1);
+            listaLlegadas.incrementarPosActual();
             aux.sumarMinutos(minutosEntrePasadas);
         }
 

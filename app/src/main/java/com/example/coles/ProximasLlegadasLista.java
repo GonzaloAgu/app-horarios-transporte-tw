@@ -61,7 +61,7 @@ public class ProximasLlegadasLista {
         return posActual;
     }
 
-    public void sumarAPosActual(int n) {
-        this.posActual += n;
+    public void incrementarPosActual() {
+        posActual++;
     }
 }
