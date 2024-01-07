@@ -65,9 +65,8 @@ public class Turno {
         // guardo respuesta a retornar
         int[] proximaLlegada = {aux.getHora(), aux.getMinuto()};
 
-        // si ninguna parada cumplió el requisito, se devuelve la primer parada del día
+        // si ninguna parada cumplió el requisito
         if(paradaFinal.esAnteriorA(aux) && !paradaFinal.equals(aux))
-            //proximaLlegada = this.obtenerProximoArriboAParada(idParada, 5, 0, ordenParadas, offsets);
             return null;
 
         // lleno el recyclerview con los horarios completos

@@ -60,17 +60,20 @@ public class HorariosActivity extends AppCompatActivity implements View.OnClickL
                 proximaLlegada.setText(lineaSeleccionada.obtenerProximaHoraLlegada(idParadaSeleccionada));
                 proximaLlegada.setVisibility(View.VISIBLE);
             } catch(FueraDeHorarioException e) {
-                mensajeInicial.setText(String.format("La linea %d no pasará por %s hasta mañana", lineaSeleccionada.getNroLinea(), listaParadas[idParadaSeleccionada]));
+                mensajeInicial.setText(String.format("La linea %d no pasará por %s hasta mañana",
+                        lineaSeleccionada.getNroLinea(), listaParadas[idParadaSeleccionada]));
                 proximaLlegada.setVisibility(View.GONE);
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
-            otrasLlegadas = findViewById(R.id.otrasLlegadas);
+
             LlegadaRecyclerViewAdapter RVadapter = new LlegadaRecyclerViewAdapter(this, ProximasLlegadasLista.getInstance().getLlegadas());
             otrasLlegadas.setAdapter(RVadapter);
 
-            otrasLlegadas.setLayoutManager(new LinearLayoutManager(this));
-            int pos = ProximasLlegadasLista.getInstance().getPosActual();
-            otrasLlegadas.scrollToPosition(pos+1);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+
+            otrasLlegadas.setLayoutManager(layoutManager);
+            int posScroll = ProximasLlegadasLista.getInstance().getPosActual();
+            layoutManager.scrollToPositionWithOffset(posScroll+1, 0);
         }
     }
 
@@ -139,6 +142,8 @@ public class HorariosActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
+    /** Actualiza el spinner de paradas de acuerdo a la línea que se seleccionó
+     * */
     private void actualizarParadas(){
         adapterZonas.clear();
         for(int p : lineaSeleccionada.getParadas()){
