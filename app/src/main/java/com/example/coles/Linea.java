@@ -81,22 +81,16 @@ public class Linea {
             if(llegadaTurno != null){
                 if(llegadaLinea == null)
                     llegadaLinea = llegadaTurno;
-                else if(llegadaTurno.getHora() < llegadaLinea.getHora())
-                    llegadaLinea = llegadaTurno;
-                else if(llegadaTurno.getHora() == llegadaLinea.getHora() && llegadaTurno.getMinuto() < llegadaLinea.getMinuto())
+                else if(llegadaTurno.compareTo(llegadaLinea) == -1)
                     llegadaLinea = llegadaTurno;
             }
-
         }
 
         listaRecycler.ordenarLista();
 
         if(llegadaLinea == null)
             throw new FueraDeHorarioException();
-
-        if(llegadaLinea.getHora() == 24)
-            llegadaLinea.setHora(0);
-
-        return llegadaLinea.toString();
+        else
+            return llegadaLinea.toString();
     }
 }
