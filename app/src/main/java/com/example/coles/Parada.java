@@ -48,10 +48,9 @@ public class Parada implements Comparable<Parada>{
     }
 
     public boolean esAnteriorA(Parada p){
-
         if(this.hora < p.getHora())
             return true;
-        else return this.hora == p.getHora() && this.minuto <= p.getMinuto();
+        else return this.hora == p.getHora() && this.minuto < p.getMinuto();
     }
 
     public void sumarMinutos(int minutos){
