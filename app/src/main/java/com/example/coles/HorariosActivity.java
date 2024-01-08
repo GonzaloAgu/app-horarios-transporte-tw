@@ -59,6 +59,7 @@ public class HorariosActivity extends AppCompatActivity implements View.OnClickL
             try {
                 proximaLlegada.setText(lineaSeleccionada.obtenerProximaHoraLlegada(idParadaSeleccionada));
                 proximaLlegada.setVisibility(View.VISIBLE);
+                setDisponibilidad(view, false);
             } catch(FueraDeHorarioException e) {
                 mensajeInicial.setText(String.format("La linea %d no pasará por %s hasta mañana",
                         lineaSeleccionada.getNroLinea(), listaParadas[idParadaSeleccionada]));
@@ -74,6 +75,7 @@ public class HorariosActivity extends AppCompatActivity implements View.OnClickL
             otrasLlegadas.setLayoutManager(layoutManager);
             int posScroll = ProximasLlegadasLista.getInstance().getPosActual();
             layoutManager.scrollToPositionWithOffset(posScroll+1, 0);
+
         }
     }
 
@@ -131,7 +133,7 @@ public class HorariosActivity extends AppCompatActivity implements View.OnClickL
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id){
                 ((TextView) parentView.getChildAt(0)).setTextColor(Color.WHITE);
                 ((TextView) parentView.getChildAt(0)).setTextSize(20);
-
+                setDisponibilidad(botonConsultar, true);
                 idParadaSeleccionada = lineaSeleccionada.getParadas()[position];
             }
 

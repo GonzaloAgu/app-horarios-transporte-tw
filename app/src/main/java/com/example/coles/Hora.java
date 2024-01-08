@@ -21,7 +21,8 @@ public class Hora implements Comparable<Hora>{
         return minuto;
     }
 
-    public String getHoraCompleta(){
+    @Override
+    public String toString(){
         return String.format("%d:%02d", hora, minuto);
     }
 

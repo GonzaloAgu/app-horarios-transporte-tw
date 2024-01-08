@@ -22,17 +22,16 @@ public class Turno {
     /**
      *
      * @param idParada
-     * @param horaActual Formato 24hs
-     * @param minutosActual
+     * @param ahora Hora actual
      * @param ordenParadas arreglo que enumera IDs de las paradas que abarca la línea
      * @param offsets referido al arreglo anterior; arreglo que enumera los minutos que se demora en llegar a cada parada.
      * @return [ hora de llegada, minuto de llegada]
      */
-    public int[] obtenerProximoArriboAParada(int idParada, int horaActual, int minutosActual, int[] ordenParadas, int[] offsets) {
+    public int[] obtenerProximoArriboAParada(int idParada, Hora ahora, int[] ordenParadas, int[] offsets) {
 
         // se crean dos "paradas teóricas", una siendo la parada de partida de la unidad y otra la del usuario
         Parada aux = new Parada(-1, paradaInicial.getHora(), paradaInicial.getMinuto());
-        Parada objetivo = new Parada(-1, horaActual, minutosActual);
+        Parada objetivo = new Parada(-1, ahora.getHora(), ahora.getMinuto());
 
         // hallar posición en ordenParadas de la parada inicial y la parada del usuario, guardarla en j
         int j = Carga.posicionEnArreglo(ordenParadas, paradaInicial.getIdParada());

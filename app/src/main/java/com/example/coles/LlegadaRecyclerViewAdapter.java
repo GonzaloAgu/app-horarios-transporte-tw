@@ -33,7 +33,7 @@ public class LlegadaRecyclerViewAdapter extends RecyclerView.Adapter<LlegadaRecy
 
     @Override
     public void onBindViewHolder(@NonNull LlegadaRecyclerViewAdapter.MyViewHolder holder, int position) {
-        holder.horaView.setText(horas.get(position).getHoraCompleta());
+        holder.horaView.setText(horas.get(position).toString());
         holder.imageView.setImageResource(iconoBus);
     }
 
@@ -41,6 +41,7 @@ public class LlegadaRecyclerViewAdapter extends RecyclerView.Adapter<LlegadaRecy
     public int getItemCount() {
         return horas.size();
     }
+
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 

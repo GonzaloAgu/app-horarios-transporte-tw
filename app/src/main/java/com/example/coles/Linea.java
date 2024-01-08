@@ -66,20 +66,19 @@ public class Linea {
     public String
     obtenerProximaHoraLlegada(int idParada) throws FueraDeHorarioException {
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT-3:00"));
-        int horaActual = calendar.get(Calendar.HOUR_OF_DAY);
-        int minutosActual = calendar.get(Calendar.MINUTE);
+        Hora ahora = new Hora(calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE));
 
         ProximasLlegadasLista listaRecycler = ProximasLlegadasLista.getInstance();
         listaRecycler.limpiarLista();
 
-        if(horaActual == 0)
-            horaActual = 24; // para simplificar comparaciones entre horas
+        if(ahora.getHora() == 0)
+            ahora.setHora(24); // para simplificar comparaciones entre horas
 
         // buscar el turno de la línea más proximo a la parada
         int[] llegadaLinea = null;
         for (Turno turno : turnos) {
             // TODO: Refactorizar utilizando la clase Hora
-            int[] llegadaTurno = turno.obtenerProximoArriboAParada(idParada, horaActual, minutosActual, paradas, offsets);
+            int[] llegadaTurno = turno.obtenerProximoArriboAParada(idParada, ahora, paradas, offsets);
             if(llegadaTurno != null){
                 if(llegadaLinea == null)
                     llegadaLinea = llegadaTurno;
