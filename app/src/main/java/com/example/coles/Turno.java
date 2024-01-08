@@ -24,7 +24,6 @@ public class Turno {
         // se crean dos "paradas teóricas", una siendo la parada de partida de la unidad y otra la del usuario
         Parada aux = new Parada(-1, paradaInicial.getHora(), paradaInicial.getMinuto());
         Parada objetivo = new Parada(-1, ahora.getHora(), ahora.getMinuto());
-
         // hallar posición en ordenParadas de la parada inicial y la parada del usuario, guardarla en j
         int j = Carga.posicionEnArreglo(ordenParadas, paradaInicial.getIdParada());
         int j2 = Carga.posicionEnArreglo(ordenParadas, idParada);
@@ -35,7 +34,7 @@ public class Turno {
                 j = 0;
             else
                 j++;
-            aux.sumarMinutos(offsets[j]);
+            aux.getHorario().sumarMinutos(offsets[j]);
         }
 
         // se obtiene el tiempo de ciclo de la unidad (vuelta completa en el recorrido)
@@ -50,7 +49,7 @@ public class Turno {
         while(aux.esAnteriorA(objetivo) && aux.esAnteriorA(paradaFinal)){
             listaLlegadas.agregarLlegada(new Hora(aux.getHora(), aux.getMinuto()));
             listaLlegadas.incrementarPosActual();
-            aux.sumarMinutos(minutosEntrePasadas);
+            aux.getHorario().sumarMinutos(minutosEntrePasadas);
         }
 
         // guardo respuesta a retornar
@@ -63,7 +62,7 @@ public class Turno {
         // lleno el recyclerview con los horarios completos
         while(aux.esAnteriorA(paradaFinal) && aux.getHora() >= 5){
             listaLlegadas.agregarLlegada(new Hora(aux.getHora(), aux.getMinuto()));
-            aux.sumarMinutos(minutosEntrePasadas);
+            aux.getHorario().sumarMinutos(minutosEntrePasadas);
         }
 
         return proximaLlegada;

@@ -6,73 +6,62 @@ import java.util.Locale;
 
 public class Parada implements Comparable<Parada>{
     final int idParada;
-    private int hora;
-    private int minuto;
+    private Hora horario;
 
     public Parada(int idParada, int hora, int minuto) {
         this.idParada = idParada;
-        this.hora = hora;
-        this.minuto = minuto;
+        horario = new Hora(hora, minuto);
     }
 
 
     @NonNull
     @Override
     public String toString(){
-        return String.format(Locale.getDefault(), "%d:%d", hora, minuto);
+        return horario.toString();
     }
 
     @Override
     public int compareTo(Parada parada) {
-        if(this.hora > parada.getHora())
+        if(getHora() > parada.getHora())
             return 1;
-        else if(this.minuto > parada.getMinuto())
+        else if(getMinuto() > parada.getMinuto())
             return 1;
-        else if(parada.getHora() == this.hora && parada.getMinuto() == this.minuto)
+        else if(parada.getHora() == getHora() && parada.getMinuto() == getMinuto())
             return 0;
         else
             return -1;
 
     }
 
+
     public int getIdParada() {
         return idParada;
     }
 
     public int getHora() {
-        return hora;
+        return horario.getHora();
     }
 
     public int getMinuto() {
-        return minuto;
+        return horario.getMinuto();
+    }
+
+    public Hora getHorario() {
+        return horario;
     }
 
     public boolean esAnteriorA(Parada p){
-        if(this.hora < p.getHora())
+        if(getHora() < p.getHora())
             return true;
-        else return this.hora == p.getHora() && this.minuto < p.getMinuto();
+        else return getHora() == p.getHora() && getMinuto() < p.getMinuto();
     }
 
-    public void sumarMinutos(int minutos){
-        if(minutos > 59){
-            this.hora += minutos / 60;
-            this.minuto += minutos % 60;
-        } else {
-            this.minuto += minutos;
-        }
-        if(this.minuto > 59){
-            this.hora++;
-            this.minuto -= 60;
-        }
 
-        if(this.hora == 25)
-            this.hora = 1;
-    }
     @Override
     public boolean equals(Object obj){
         if(obj instanceof Parada){
             Parada p = (Parada)obj;
-            return p.getHora() == this.hora && p.getMinuto() == this.minuto;
+            return p.getHora() == getHora() && p.getMinuto() == getMinuto();
         } else {
             return false;
         }

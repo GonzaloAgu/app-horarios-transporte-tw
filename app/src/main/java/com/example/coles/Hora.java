@@ -25,6 +25,10 @@ public class Hora implements Comparable<Hora>{
         return minuto;
     }
 
+    public void setMinuto(int minuto) {
+        this.minuto = minuto;
+    }
+
     @NonNull
     @Override
     public String toString(){
@@ -39,5 +43,21 @@ public class Hora implements Comparable<Hora>{
             return Integer.compare(this.minuto, hora.getMinuto());
         } else
             return 1;
+    }
+
+    public void sumarMinutos(int minutos){
+        if(minutos > 59){
+            this.hora += minutos / 60;
+            this.minuto += minutos % 60;
+        } else {
+            this.minuto += minutos;
+        }
+        if(this.minuto > 59){
+            this.hora++;
+            this.minuto -= 60;
+        }
+
+        if(this.hora == 25)
+            this.hora = 1;
     }
 }
