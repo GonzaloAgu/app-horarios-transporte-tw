@@ -73,9 +73,6 @@ public class Linea {
         ProximasLlegadasLista listaRecycler = ProximasLlegadasLista.getInstance();
         listaRecycler.limpiarLista();
 
-        if(ahora.getHora() == 0)
-            ahora.setHora(24); // para simplificar comparaciones entre horas
-
         // buscar el turno de la línea más proximo a la parada
         int[] llegadaLinea = null;
         for (Turno turno : turnos) {

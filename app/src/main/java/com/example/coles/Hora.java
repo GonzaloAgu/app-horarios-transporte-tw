@@ -9,7 +9,10 @@ public class Hora implements Comparable<Hora>{
     private int minuto;
 
     public Hora(int hora, int minuto) {
-        this.hora = hora;
+        if(hora == 0)
+            this.hora = 24;
+        else
+            this.hora = hora;
         this.minuto = minuto;
     }
 
@@ -32,6 +35,8 @@ public class Hora implements Comparable<Hora>{
     @NonNull
     @Override
     public String toString(){
+        if(hora == 24)
+            return String.format(Locale.getDefault(), "%d:%02d", 0, minuto);
         return String.format(Locale.getDefault(), "%d:%02d", hora, minuto);
     }
 
@@ -57,7 +62,7 @@ public class Hora implements Comparable<Hora>{
             this.minuto -= 60;
         }
 
-        if(this.hora == 25)
-            this.hora = 1;
+        if(this.hora > 24)
+            this.hora -= 24;
     }
 }

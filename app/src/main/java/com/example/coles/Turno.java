@@ -56,11 +56,15 @@ public class Turno {
         int[] proximaLlegada = {aux.getHora(), aux.getMinuto()};
 
         // si ninguna parada cumplió el requisito
-        if(aux.esAnteriorA(objetivo) || paradaFinal.esAnteriorA(aux))
+        if(aux.esAnteriorA(objetivo) || paradaFinal.esAnteriorA(aux)){
+            if(aux.equals(paradaFinal))
+                listaLlegadas.agregarLlegada(new Hora(aux.getHora(), aux.getMinuto()));
             return null;
+        }
+
 
         // lleno el recyclerview con los horarios completos
-        while(aux.esAnteriorA(paradaFinal) && aux.getHora() >= 5){
+        while((aux.esAnteriorA(paradaFinal) || aux.equals(paradaFinal)) && aux.getHora() >= 5){
             listaLlegadas.agregarLlegada(new Hora(aux.getHora(), aux.getMinuto()));
             aux.getHorario().sumarMinutos(minutosEntrePasadas);
         }

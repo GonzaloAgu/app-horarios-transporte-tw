@@ -13,13 +13,6 @@ public class Parada implements Comparable<Parada>{
         horario = new Hora(hora, minuto);
     }
 
-
-    @NonNull
-    @Override
-    public String toString(){
-        return horario.toString();
-    }
-
     @Override
     public int compareTo(Parada parada) {
         if(getHora() > parada.getHora())
@@ -32,7 +25,6 @@ public class Parada implements Comparable<Parada>{
             return -1;
 
     }
-
 
     public int getIdParada() {
         return idParada;
@@ -50,10 +42,20 @@ public class Parada implements Comparable<Parada>{
         return horario;
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        return horario.toString();
+    }
+
     public boolean esAnteriorA(Parada p){
-        if(getHora() < p.getHora())
+        int estaHora = getHora();
+        if(p.getHora() == 0)
+            estaHora = 24;
+
+        if(estaHora < p.getHora())
             return true;
-        else return getHora() == p.getHora() && getMinuto() < p.getMinuto();
+        else return estaHora == p.getHora() && getMinuto() < p.getMinuto();
     }
 
 
