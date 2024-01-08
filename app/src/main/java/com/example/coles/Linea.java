@@ -74,16 +74,16 @@ public class Linea {
         listaRecycler.limpiarLista();
 
         // buscar el turno de la línea más proximo a la parada
-        int[] llegadaLinea = null;
+        Hora llegadaLinea = null;
         for (Turno turno : turnos) {
             // TODO: Refactorizar utilizando la clase Hora
-            int[] llegadaTurno = turno.obtenerProximoArriboAParada(idParada, ahora, paradas, offsets);
+            Hora llegadaTurno = turno.obtenerProximoArriboAParada(idParada, ahora, paradas, offsets);
             if(llegadaTurno != null){
                 if(llegadaLinea == null)
                     llegadaLinea = llegadaTurno;
-                else if(llegadaTurno[0] < llegadaLinea[0])
+                else if(llegadaTurno.getHora() < llegadaLinea.getHora())
                     llegadaLinea = llegadaTurno;
-                else if(llegadaTurno[0] == llegadaLinea[0] && llegadaTurno[1] < llegadaLinea[1])
+                else if(llegadaTurno.getHora() == llegadaLinea.getHora() && llegadaTurno.getMinuto() < llegadaLinea.getMinuto())
                     llegadaLinea = llegadaTurno;
             }
 
@@ -94,10 +94,9 @@ public class Linea {
         if(llegadaLinea == null)
             throw new FueraDeHorarioException();
 
-        if(llegadaLinea[0] == 24)
-            llegadaLinea[0] = 0;
+        if(llegadaLinea.getHora() == 24)
+            llegadaLinea.setHora(0);
 
-        return String.format(Locale.getDefault(), "%d:%02d",
-                llegadaLinea[0], llegadaLinea[1]);
+        return llegadaLinea.toString();
     }
 }

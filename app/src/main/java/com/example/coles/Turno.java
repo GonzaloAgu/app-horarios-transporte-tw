@@ -19,7 +19,7 @@ public class Turno {
      * @param offsets referido al arreglo anterior; arreglo que enumera los minutos que se demora en llegar a cada parada.
      * @return [ hora de llegada, minuto de llegada]
      */
-    public int[] obtenerProximoArriboAParada(int idParada, Hora ahora, int[] ordenParadas, int[] offsets) {
+    public Hora obtenerProximoArriboAParada(int idParada, Hora ahora, int[] ordenParadas, int[] offsets) {
 
         // se crean dos "paradas teóricas", una siendo la parada de partida de la unidad y otra la del usuario
         Parada aux = new Parada(-1, paradaInicial.getHora(), paradaInicial.getMinuto());
@@ -53,7 +53,7 @@ public class Turno {
         }
 
         // guardo respuesta a retornar
-        int[] proximaLlegada = {aux.getHora(), aux.getMinuto()};
+        Hora proximaLlegada = new Hora(aux.getHora(), aux.getMinuto());
 
         // si ninguna parada cumplió el requisito
         if(aux.esAnteriorA(objetivo) || paradaFinal.esAnteriorA(aux)){
