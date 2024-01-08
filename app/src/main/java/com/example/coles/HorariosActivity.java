@@ -52,14 +52,14 @@ public class HorariosActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        Animacion.clickBoton(view);
+        Animacion.click(view);
         if(view.getId() == R.id.botonConsultar) {
             mensajeInicial.setText("\nPróxima llegada...");
             Carga.cargarTurnos(getResources(), lineaSeleccionada, listaLineas);
             try {
+                setDisponibilidad(view, false);
                 proximaLlegada.setText(lineaSeleccionada.obtenerProximaHoraLlegada(idParadaSeleccionada));
                 proximaLlegada.setVisibility(View.VISIBLE);
-                setDisponibilidad(view, false);
             } catch(FueraDeHorarioException e) {
                 mensajeInicial.setText(String.format("La linea %d no pasará por %s hasta mañana",
                         lineaSeleccionada.getNroLinea(), listaParadas[idParadaSeleccionada]));
