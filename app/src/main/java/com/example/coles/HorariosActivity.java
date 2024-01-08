@@ -15,11 +15,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
 
 public class HorariosActivity extends AppCompatActivity implements View.OnClickListener {
     private String[] listaParadas;
-    private ArrayList<Linea> listaLineas = new ArrayList<>();
+    private final ArrayList<Linea> listaLineas = new ArrayList<>();
     private Linea lineaSeleccionada;
     private int idParadaSeleccionada;
 
@@ -28,13 +29,9 @@ public class HorariosActivity extends AppCompatActivity implements View.OnClickL
     private RecyclerView otrasLlegadas;
     private TextView botonConsultar;
 
-    private Spinner spinnerLineas;
     private Spinner spinnerZonas;
 
-    private ArrayAdapter<CharSequence> adapterLineas;
     private ArrayAdapter<CharSequence> adapterZonas;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +58,7 @@ public class HorariosActivity extends AppCompatActivity implements View.OnClickL
                 proximaLlegada.setText(lineaSeleccionada.obtenerProximaHoraLlegada(idParadaSeleccionada));
                 proximaLlegada.setVisibility(View.VISIBLE);
             } catch(FueraDeHorarioException e) {
-                mensajeInicial.setText(String.format("La linea %d no pasará por %s hasta mañana",
+                mensajeInicial.setText(String.format(Locale.getDefault(),"La linea %d no pasará por %s hasta mañana",
                         lineaSeleccionada.getNroLinea(), listaParadas[idParadaSeleccionada]));
                 proximaLlegada.setVisibility(View.GONE);
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -81,14 +78,14 @@ public class HorariosActivity extends AppCompatActivity implements View.OnClickL
 
     private void configurarSpinners(){
         // Asignar spinners
-        spinnerLineas = findViewById(R.id.spinnerLineas);
+        Spinner spinnerLineas = findViewById(R.id.spinnerLineas);
         spinnerZonas = findViewById(R.id.spinnerZonas);
 
         // Spinner de parada desactivado hasta que se elija una línea
         setDisponibilidad(spinnerZonas, false);
 
         // Adaptadores para spinners
-        adapterLineas = ArrayAdapter.createFromResource(
+        ArrayAdapter<CharSequence> adapterLineas = ArrayAdapter.createFromResource(
                 this,
                 R.array.lineas_array,
                 android.R.layout.simple_spinner_dropdown_item
@@ -168,7 +165,7 @@ public class HorariosActivity extends AppCompatActivity implements View.OnClickL
         proximaLlegada = findViewById(R.id.proximaLlegada);
         otrasLlegadas = findViewById(R.id.otrasLlegadas);
 
-        botonConsultar.setOnClickListener(this::onClick);
+        botonConsultar.setOnClickListener(this);
         // desactiva botón de consulta
         setDisponibilidad(botonConsultar, false);
     }

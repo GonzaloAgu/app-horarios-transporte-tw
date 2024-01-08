@@ -1,8 +1,6 @@
 package com.example.coles;
 
 import android.content.res.Resources;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
 import java.util.ArrayList;
 
@@ -10,7 +8,7 @@ public class Carga {
     /**
      * Carga los datos básicos de los turnos para una línea, en caso de ser necesario.
      * @param res: elemento getResources()
-     * @param lineaSeleccionada: linea actualmente seleccionada en el spinner de líneas
+     * @param lineaSeleccionada: linea a ser cargada
      * @param listaLineas: todas las líneas del sistema
      *
      */

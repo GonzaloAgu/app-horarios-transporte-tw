@@ -1,5 +1,9 @@
 package com.example.coles;
 
+import androidx.annotation.NonNull;
+
+import java.util.Locale;
+
 public class Hora implements Comparable<Hora>{
     private int hora;
     private int minuto;
@@ -21,9 +25,10 @@ public class Hora implements Comparable<Hora>{
         return minuto;
     }
 
+    @NonNull
     @Override
     public String toString(){
-        return String.format("%d:%02d", hora, minuto);
+        return String.format(Locale.getDefault(), "%d:%02d", hora, minuto);
     }
 
     @Override
@@ -31,13 +36,8 @@ public class Hora implements Comparable<Hora>{
         if(this.hora < hora.getHora())
             return -1;
         else if(this.hora == hora.getHora()) {
-            if (this.minuto < hora.getMinuto())
-                return -1;
-            if (this.minuto == hora.getMinuto())
-                return 0;
-            else
-                return 1;
+            return Integer.compare(this.minuto, hora.getMinuto());
         } else
             return 1;
-    };
+    }
 }

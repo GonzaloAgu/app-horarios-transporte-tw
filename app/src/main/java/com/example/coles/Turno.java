@@ -1,8 +1,8 @@
 package com.example.coles;
 
 public class Turno {
-    private Parada paradaInicial;
-    private Parada paradaFinal;
+    final Parada paradaInicial;
+    final Parada paradaFinal;
 
 
     public Turno(Parada paradaInicial, Parada paradaFinal) {
@@ -11,17 +11,9 @@ public class Turno {
     }
 
 
-    public Parada getParadaInicial() {
-        return paradaInicial;
-    }
-
-    public Parada getParadaFinal() {
-        return paradaFinal;
-    }
-
     /**
      *
-     * @param idParada
+     * @param idParada identificador de la parada
      * @param ahora Hora actual
      * @param ordenParadas arreglo que enumera IDs de las paradas que abarca la línea
      * @param offsets referido al arreglo anterior; arreglo que enumera los minutos que se demora en llegar a cada parada.
@@ -48,8 +40,8 @@ public class Turno {
 
         // se obtiene el tiempo de ciclo de la unidad (vuelta completa en el recorrido)
         int minutosEntrePasadas = 0;
-        for(int k = 0; k<offsets.length; k++){
-            minutosEntrePasadas += offsets[k];
+        for (int offset : offsets) {
+            minutosEntrePasadas += offset;
         }
 
         ProximasLlegadasLista listaLlegadas = ProximasLlegadasLista.getInstance();

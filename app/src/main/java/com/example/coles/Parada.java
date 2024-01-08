@@ -1,7 +1,11 @@
 package com.example.coles;
 
+import androidx.annotation.NonNull;
+
+import java.util.Locale;
+
 public class Parada implements Comparable<Parada>{
-    private int idParada;
+    final int idParada;
     private int hora;
     private int minuto;
 
@@ -11,13 +15,11 @@ public class Parada implements Comparable<Parada>{
         this.minuto = minuto;
     }
 
-    public Parada(String idParada, String hora){
 
-    }
-
+    @NonNull
     @Override
     public String toString(){
-        return String.format("%d:%d", hora, minuto);
+        return String.format(Locale.getDefault(), "%d:%d", hora, minuto);
     }
 
     @Override
@@ -49,17 +51,10 @@ public class Parada implements Comparable<Parada>{
 
         if(this.hora < p.getHora())
             return true;
-        else if(this.hora == p.getHora() && this.minuto <= p.getMinuto())
-            return true;
-        else
-            return false;
+        else return this.hora == p.getHora() && this.minuto <= p.getMinuto();
     }
 
-    /**
-     * @param
-     * @return
-     */
-    public Parada sumarMinutos(int minutos){
+    public void sumarMinutos(int minutos){
         if(minutos > 59){
             this.hora += minutos / 60;
             this.minuto += minutos % 60;
@@ -73,7 +68,6 @@ public class Parada implements Comparable<Parada>{
 
         if(this.hora == 25)
             this.hora = 1;
-        return this;
     }
     @Override
     public boolean equals(Object obj){

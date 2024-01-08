@@ -2,16 +2,19 @@ package com.example.coles;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.TimeZone;
 
 public class Linea {
-    private byte nroLinea;
+    private final byte nroLinea;
+    private final String nombre;
     private int[] paradas;
     private int[] offsets;
 
-    private ArrayList<Turno> turnos = new ArrayList<>();
+    private final ArrayList<Turno> turnos = new ArrayList<>();
 
     public Linea(String nombre, int nroLinea){
+        this.nombre = nombre;
         this.nroLinea = (byte) nroLinea;
     }
 
@@ -59,9 +62,9 @@ public class Linea {
 
     /**
      * Determina la hora de llegada de la próxima unidad de la línea a determinada parada
-     * @param idParada
+     * @param idParada identificador de la parada
      * @return String con formato 24hs "HH:MM"
-     * @throws FueraDeHorarioException
+     * @throws FueraDeHorarioException cuando no se esperan llegadas en el día
      */
     public String
     obtenerProximaHoraLlegada(int idParada) throws FueraDeHorarioException {
@@ -98,7 +101,7 @@ public class Linea {
         if(llegadaLinea[0] == 24)
             llegadaLinea[0] = 0;
 
-        return String.format("%d:%02d",
+        return String.format(Locale.getDefault(), "%d:%02d",
                 llegadaLinea[0], llegadaLinea[1]);
     }
 }
