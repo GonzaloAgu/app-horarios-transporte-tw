@@ -64,14 +64,18 @@ public class HorariosActivity extends AppCompatActivity implements View.OnClickL
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
 
-            LlegadaRecyclerViewAdapter RVadapter = new LlegadaRecyclerViewAdapter(this, ProximasLlegadasLista.getInstance().getLlegadas());
+            ProximasLlegadasLista lista = ProximasLlegadasLista.getInstance();
+
+            LlegadaRecyclerViewAdapter RVadapter = new LlegadaRecyclerViewAdapter(this, lista.getLlegadas());
             otrasLlegadas.setAdapter(RVadapter);
 
             LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 
             otrasLlegadas.setLayoutManager(layoutManager);
-            int posScroll = ProximasLlegadasLista.getInstance().getPosActual();
-            layoutManager.scrollToPositionWithOffset(posScroll+1, 0);
+            int posScroll = lista.getPosActual();
+            if(posScroll < lista.getLlegadas().size() - 1)
+                posScroll++;
+            layoutManager.scrollToPositionWithOffset(posScroll, 0);
 
         }
     }
