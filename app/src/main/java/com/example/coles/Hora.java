@@ -50,6 +50,16 @@ public class Hora implements Comparable<Hora>{
             return 1;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Hora) {
+            Hora h = (Hora) obj;
+            return h.getHora() == getHora() && h.getMinuto() == getMinuto();
+        } else {
+            return false;
+        }
+    }
+
     public void sumarMinutos(int minutos){
         if(minutos > 59){
             this.hora += minutos / 60;
@@ -64,5 +74,15 @@ public class Hora implements Comparable<Hora>{
 
         if(this.hora > 24)
             this.hora -= 24;
+    }
+
+    public boolean esAnteriorA(Hora h){
+        int estaHora = getHora();
+        if(h.getHora() == 0)
+            estaHora = 24;
+
+        if(estaHora < h.getHora())
+            return true;
+        else return estaHora == h.getHora() && getMinuto() < h.getMinuto();
     }
 }

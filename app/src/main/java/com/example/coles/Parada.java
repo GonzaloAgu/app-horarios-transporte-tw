@@ -48,16 +48,6 @@ public class Parada implements Comparable<Parada>{
         return horario.toString();
     }
 
-    public boolean esAnteriorA(Parada p){
-        int estaHora = getHora();
-        if(p.getHora() == 0)
-            estaHora = 24;
-
-        if(estaHora < p.getHora())
-            return true;
-        else return estaHora == p.getHora() && getMinuto() < p.getMinuto();
-    }
-
 
     @Override
     public boolean equals(Object obj){

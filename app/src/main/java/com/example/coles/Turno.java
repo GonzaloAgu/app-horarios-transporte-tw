@@ -22,8 +22,9 @@ public class Turno {
     public Hora obtenerProximoArriboAParada(int idParada, Hora ahora, int[] ordenParadas, int[] offsets) {
 
         // se crean dos "paradas teóricas", una siendo la parada de partida de la unidad y otra la del usuario
-        Parada aux = new Parada(-1, paradaInicial.getHora(), paradaInicial.getMinuto());
-        Parada objetivo = new Parada(-1, ahora.getHora(), ahora.getMinuto());
+        Hora aux = new Hora(paradaInicial.getHora(), paradaInicial.getMinuto());
+        Hora objetivo = new Hora(ahora.getHora(), ahora.getMinuto());
+
         // hallar posición en ordenParadas de la parada inicial y la parada del usuario, guardarla en j
         int j = Carga.posicionEnArreglo(ordenParadas, paradaInicial.getIdParada());
         int j2 = Carga.posicionEnArreglo(ordenParadas, idParada);
@@ -34,7 +35,7 @@ public class Turno {
                 j = 0;
             else
                 j++;
-            aux.getHorario().sumarMinutos(offsets[j]);
+            aux.sumarMinutos(offsets[j]);
         }
 
         // se obtiene el tiempo de ciclo de la unidad (vuelta completa en el recorrido)
@@ -46,31 +47,27 @@ public class Turno {
         ProximasLlegadasLista listaLlegadas = ProximasLlegadasLista.getInstance();
 
         // se suman vueltas hasta llegar a un horario posterior a la hora actual y está dentro de horario
-        while(aux.esAnteriorA(objetivo) && aux.esAnteriorA(paradaFinal)){
+        while(aux.esAnteriorA(objetivo) && aux.esAnteriorA(paradaFinal.getHorario())){
             listaLlegadas.agregarLlegada(new Hora(aux.getHora(), aux.getMinuto()));
             listaLlegadas.incrementarPosActual();
-            aux.getHorario().sumarMinutos(minutosEntrePasadas);
+            aux.sumarMinutos(minutosEntrePasadas);
         }
 
         // guardo respuesta a retornar
         Hora proximaLlegada = new Hora(aux.getHora(), aux.getMinuto());
 
         // si ninguna parada cumplió el requisito
-        if(aux.esAnteriorA(objetivo) || paradaFinal.esAnteriorA(aux)){
+        if(aux.esAnteriorA(objetivo) || paradaFinal.getHorario().esAnteriorA(aux)){
             if(aux.equals(paradaFinal))
                 listaLlegadas.agregarLlegada(new Hora(aux.getHora(), aux.getMinuto()));
             return null;
         }
 
-
         // lleno el recyclerview con los horarios completos
-        while((aux.esAnteriorA(paradaFinal) || aux.equals(paradaFinal)) && aux.getHora() >= 5){
+        while((aux.esAnteriorA(paradaFinal.getHorario()) || aux.equals(paradaFinal.getHorario())) && aux.getHora() >= 5){
             listaLlegadas.agregarLlegada(new Hora(aux.getHora(), aux.getMinuto()));
-            aux.getHorario().sumarMinutos(minutosEntrePasadas);
+            aux.sumarMinutos(minutosEntrePasadas);
         }
-
         return proximaLlegada;
-
     }
-
 }
