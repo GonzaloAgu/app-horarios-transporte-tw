@@ -4,12 +4,10 @@ public class Turno {
     final Parada paradaInicial;
     final Parada paradaFinal;
 
-
     public Turno(Parada paradaInicial, Parada paradaFinal) {
         this.paradaInicial = paradaInicial;
         this.paradaFinal = paradaFinal;
     }
-
 
     /**
      *
@@ -22,7 +20,7 @@ public class Turno {
     public Hora obtenerProximoArriboAParada(int idParada, Hora ahora, int[] ordenParadas, int[] offsets) {
 
         // se crean dos "paradas teóricas", una siendo la parada de partida de la unidad y otra la del usuario
-        Hora aux = new Hora(paradaInicial.getHora(), paradaInicial.getMinuto());
+        Hora aux = new Hora(paradaInicial.getHorario().getHora(), paradaInicial.getHorario().getMinuto());
         Hora objetivo = new Hora(ahora.getHora(), ahora.getMinuto());
 
         // hallar posición en ordenParadas de la parada inicial y la parada del usuario, guardarla en j

@@ -15,11 +15,12 @@ public class Parada implements Comparable<Parada>{
 
     @Override
     public int compareTo(Parada parada) {
-        if(getHora() > parada.getHora())
+        Hora h = parada.getHorario();
+        if(horario.getHora() > h.getHora())
             return 1;
-        else if(getMinuto() > parada.getMinuto())
+        else if(horario.getMinuto() > h.getMinuto())
             return 1;
-        else if(parada.getHora() == getHora() && parada.getMinuto() == getMinuto())
+        else if(h.getHora() == horario.getHora() && h.getMinuto() == horario.getMinuto())
             return 0;
         else
             return -1;
@@ -28,14 +29,6 @@ public class Parada implements Comparable<Parada>{
 
     public int getIdParada() {
         return idParada;
-    }
-
-    public int getHora() {
-        return horario.getHora();
-    }
-
-    public int getMinuto() {
-        return horario.getMinuto();
     }
 
     public Hora getHorario() {
@@ -53,7 +46,7 @@ public class Parada implements Comparable<Parada>{
     public boolean equals(Object obj){
         if(obj instanceof Parada){
             Parada p = (Parada)obj;
-            return p.getHora() == getHora() && p.getMinuto() == getMinuto();
+            return p.getHorario().getHora() == horario.getHora() && p.getHorario().getMinuto() == horario.getMinuto();
         } else {
             return false;
         }
