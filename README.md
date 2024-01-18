@@ -1,6 +1,7 @@
 # MiColeTw
-MiColeTW es un proyecto de app offline, nativa de Android utilizando Java, que permite a los usuarios de transporte público en Trelew consultar sus horarios. Esto abarca a las líneas 1, 2, 3 y 4 de El 22 SRL.
-El proyecto está orientado a los ciudadanos que están algo familiarizados con el sistema y quieren tener un acceso rápido a los horarios que establece la empresa para la línea que va a tomar.
+Hoy en día, es difícil acceder a los horarios del transporte urbano de la ciudad de Trelew. A veces intento usar las tablas que provee la empresa, pero son muy poco prácticas y un desorden.
+
+MiColeTW es una app offline nativa de Android que permite a los usuarios consultar horarios del transporte públcio. Esto abarca a las líneas 1, 2, 3 y 4 de *El 22 SRL*.
 
 ## Uso
 Una vez indicada la línea y la zona/barrio donde se esperará, la app ofrecerá una lista scroleable con todos los horarios de pasaje del día, indicando en la parte superior la próxima prevista.
