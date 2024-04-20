@@ -10,5 +10,3 @@ Una vez indicada la línea y la zona/barrio donde se esperará, la app ofrecerá
 
 Los horarios han sido obtenidos desde un [artículo](https://radio3cadenapatagonia.com.ar/el-22-volvio-con-cuatro-recorridos-y-frecuencias-de-entre-20-y-25-minutos/) de diciembre de 2020, por lo que no se garantiza que estos horarios sean los actuales y desconozco la rigurosidad de la empresa para cumplir con los mismos.
 
-## Descarga
-El .apk puede descargarse directamente desde [Google Drive](https://drive.google.com/file/d/1t2ue2lt7cHWeYakFkHOBK2tsDF310l35/view?usp=sharing).
